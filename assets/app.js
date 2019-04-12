@@ -5,6 +5,18 @@ const squares = document.querySelectorAll('.square');
 const message = document.querySelector('#message');
 const newColors = document.querySelector('#newColors');
 const jumbotron = document.querySelector('.jumbotron');
+const easyButton = document.querySelector('#easyButton');
+const hardButton = document.querySelector('#hardButton');
+
+easyButton.addEventListener('click', function() {
+    this.classList.add('btn', 'btn-dark');
+    hardButton.classList.remove('btn-dark');
+
+});
+hardButton.addEventListener('click', function() {
+    this.classList.add('btn', 'btn-dark');
+    easyButton.classList.remove('btn-dark');
+});
 
 function startGame() {
     for (let i = 0; i < squares.length; i++) {
