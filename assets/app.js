@@ -110,7 +110,7 @@ function randomColor() {
     return "rgb(" + r + ", " + g + ", " + b + ")";
 }
 
-newColors.addEventListener('click', function () {
+newColors.addEventListener('click', function() {
     reset();
 });
 
