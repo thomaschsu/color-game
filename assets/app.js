@@ -6,44 +6,32 @@ const squares = document.querySelectorAll('.square');
 const message = document.querySelector('#message');
 const newColors = document.querySelector('#newColors');
 const jumbotron = document.querySelector('.jumbotron');
-const easyButton = document.querySelector('#easyButton');
-const hardButton = document.querySelector('#hardButton');
+const modeButtons = document.querySelectorAll('.mode');
 
-easyButton.addEventListener('click', function() {
-    jumbotron.style.backgroundColor = "";
-    message.textContent = '';
-    message.classList.remove('alert-success');
-    message.classList.remove('alert-danger');
-    this.classList.add('btn', 'btn-dark');
-    hardButton.classList.remove('btn-dark');
-    numberSquares = 3
-    colors = generateColors(numberSquares)
+for(let i = 0; i < modeButtons.length; i++) {
+    modeButtons[i].addEventListener('click', function() {
+        modeButtons[0].classList.remove('btn-dark');
+        modeButtons[1].classList.remove('btn-dark');
+        this.classList.add('btn-dark');
+        this.textContent === 'Easy' ? numberSquares = 3 : numberSquares = 6;
+        reset();
+    });
+}
+
+function reset() {
+    // Generate new colors
+    colors = generateColors(numberSquares);
+    // Pick a new random color from array
     pickedColor = pickColor();
-    rgbValue.textContent = pickedColor;
-    for(let i = 0; i < squares.length; i++) {
-        if(colors[i]) {
-            squares[i].style.background = colors[i];
-        } else {
-            squares[i].style.display = 'none';
-        }
-    }
-});
-hardButton.addEventListener('click', function() {
+    // Reset background of jumbotron
     jumbotron.style.backgroundColor = "";
-    message.textContent = '';
-    message.classList.remove('alert-success');
-    message.classList.remove('alert-danger');
-    this.classList.add('btn', 'btn-dark');
-    easyButton.classList.remove('btn-dark');
-    numberSquares = 6;
-    colors = generateColors(numberSquares)
-    pickedColor = pickColor();
-    rgbValue.textContent = pickedColor;
-    for (let i = 0; i < squares.length; i++) {
-        squares[i].style.background = colors[i];
-        squares[i].style.display = 'inline-block';
-    };
-});
+    // Change text content back to new Colors
+    newColors.textContent = 'New Colors';
+    // Make message an empty string
+    message.textContent = "";
+    // Change colors of squares
+    startGame();
+}
 
 function startGame() {
     rgbValue.textContent = pickedColor;
@@ -51,8 +39,19 @@ function startGame() {
     message.classList.remove('alert-success');
     message.classList.remove('alert-danger');
     for (let i = 0; i < squares.length; i++) {
-        // Add intial colors to squares
-        squares[i].style.backgroundColor = colors[i];
+        if (colors[i]) {
+            squares[i].style.display = 'inline-block';
+            // Add intial colors to squares
+            squares[i].style.backgroundColor = colors[i];
+        } else {
+            squares[i].style.display = 'none';
+        }
+    }
+    checkWin();
+}
+
+function checkWin() {
+    for (let i = 0; i < squares.length; i++) {
         // Add click listeners to squares
         squares[i].addEventListener('click', function () {
             // Grab color of clicked square
@@ -69,9 +68,9 @@ function startGame() {
                 this.style.backgroundColor = '#FFF';
                 message.textContent = 'Try again!';
                 message.classList.add('alert-danger');
-            }
+            };
         });
-    }
+    };
 }
 
 
@@ -84,6 +83,7 @@ function changeColors(color) {
 }
 
 function pickColor() {
+    // Picks a random color out of the colors array;
     let random = Math.floor(Math.random() * colors.length);
     return colors[random];
 }
@@ -111,20 +111,7 @@ function randomColor() {
 }
 
 newColors.addEventListener('click', function () {
-    // Generate new colors
-    colors = generateColors(numberSquares);
-    // Pick a new random color from array
-    pickedColor = pickColor();
-    // Change rgbValue to match picked color
-    rgbValue.textContent = pickedColor;
-    // Change colors of squares
-    startGame();
-    // Reset background of jumbotron
-    jumbotron.style.backgroundColor = "";
-    // Change text content back to new Colors
-    this.textContent = 'New Colors';
-    // Make message an empty string
-    message.textContent = "";
+    reset();
 });
 
 // Initiate game
