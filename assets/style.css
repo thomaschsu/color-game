@@ -3,10 +3,9 @@ body {
 }
 
 .square {
-    width: 30%;
-    height: 30%;
-    padding-bottom: 30%;
-    background-color: red;
+    width: 25%;
+    height: 25%;
+    padding-bottom: 25%;
     display: inline-block;
     transition: background 0.5s;
     -webkit-transition: background 0.5s;
@@ -28,6 +27,9 @@ button {
 }
 
 #message {
-    display: inline-block;
-    width: 30%;
+    margin: 0 30%;
+}
+
+.text-shadow {
+    text-shadow: 1px 1px #000;
 }

@@ -38,10 +38,12 @@ hardButton.addEventListener('click', function() {
 });
 
 function startGame() {
+    // Remove classes for alert
+    message.classList.remove('alert-success');
+    message.classList.remove('alert-danger');
     for (let i = 0; i < squares.length; i++) {
         // Add intial colors to squares
         squares[i].style.backgroundColor = colors[i];
-
         // Add click listeners to squares
         squares[i].addEventListener('click', function () {
             // Grab color of clicked square
@@ -49,12 +51,15 @@ function startGame() {
             // Compare color to pickedColor
             if (clickedColor === pickedColor) {
                 message.textContent = 'You win!';
+                message.classList.remove('alert-danger');
+                message.classList.add('alert-success');
                 newColors.textContent = 'Play again?';
                 changeColors(clickedColor);
                 jumbotron.style.background = clickedColor;
             } else {
                 this.style.backgroundColor = '#FFF';
                 message.textContent = 'Try again!';
+                message.classList.add('alert-danger');
             }
         });
     }
