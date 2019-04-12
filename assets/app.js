@@ -1,6 +1,6 @@
 let numberSquares = 6;
-let colors = generateColors(numberSquares);
-let pickedColor = pickColor();
+let colors = [];
+let pickedColor;
 const rgbValue = document.getElementById('rgbValue');
 const squares = document.querySelectorAll('.square');
 const message = document.querySelector('#message');
@@ -8,15 +8,26 @@ const newColors = document.querySelector('#newColors');
 const jumbotron = document.querySelector('.jumbotron');
 const modeButtons = document.querySelectorAll('.mode');
 
-for(let i = 0; i < modeButtons.length; i++) {
-    modeButtons[i].addEventListener('click', function() {
-        modeButtons[0].classList.remove('btn-dark');
-        modeButtons[1].classList.remove('btn-dark');
-        this.classList.add('btn-dark');
-        this.textContent === 'Easy' ? numberSquares = 3 : numberSquares = 6;
-        reset();
-    });
+init();
+
+function init() {
+    setupModeButtons();
+    startGame();
+    reset();
 }
+
+function setupModeButtons() {
+    for(let i = 0; i < modeButtons.length; i++) {
+        modeButtons[i].addEventListener('click', function() {
+            modeButtons[0].classList.remove('btn-dark');
+            modeButtons[1].classList.remove('btn-dark');
+            this.classList.add('btn-dark');
+            this.textContent === 'Easy' ? numberSquares = 3 : numberSquares = 6;
+            reset();
+        });
+    }
+}
+
 
 function reset() {
     // Generate new colors
@@ -73,7 +84,6 @@ function checkWin() {
     };
 }
 
-
 function changeColors(color) {
     // Loop through all squares
     for (let i = 0; i < squares.length; i++) {
@@ -113,6 +123,3 @@ function randomColor() {
 newColors.addEventListener('click', function() {
     reset();
 });
-
-// Initiate game
-startGame();
