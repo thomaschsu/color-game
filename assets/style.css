@@ -1,7 +1,21 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 .square {
     width: 30%;
     height: 30%;
     padding-bottom: 30%;
     background-color: red;
     display: inline-block;
+}
+
+.jumbotron {
+    background-color: #3F51B5;
+}
+
+#rgbValue {
+    display: block;
+    font-weight: 700;
+    font-size: 110%;
 }
