@@ -110,7 +110,9 @@ newColors.addEventListener('click', function () {
     // Reset background of jumbotron
     jumbotron.style.backgroundColor = "";
     // Change text content back to new Colors
-    newColors.textContent = 'New Colors';
+    this.textContent = 'New Colors';
+    // Make message an empty string
+    message.textContent = "";
 });
 
 startGame();
