@@ -1,4 +1,5 @@
-let colors = generateColors(6);
+let numberSquares = 6;
+let colors = generateColors(numberSquares);
 let pickedColor = pickColor();
 
 const squares = document.querySelectorAll('.square');
@@ -11,11 +12,29 @@ const hardButton = document.querySelector('#hardButton');
 easyButton.addEventListener('click', function() {
     this.classList.add('btn', 'btn-dark');
     hardButton.classList.remove('btn-dark');
-
+    numberSquares = 3
+    colors = generateColors(numberSquares)
+    pickedColor = pickColor();
+    rgbValue.textContent = pickedColor;
+    for(let i = 0; i < squares.length; i++) {
+        if(colors[i]) {
+            squares[i].style.background = colors[i];
+        } else {
+            squares[i].style.display = 'none';
+        }
+    }
 });
 hardButton.addEventListener('click', function() {
     this.classList.add('btn', 'btn-dark');
     easyButton.classList.remove('btn-dark');
+    numberSquares = 6;
+    colors = generateColors(numberSquares)
+    pickedColor = pickColor();
+    rgbValue.textContent = pickedColor;
+    for (let i = 0; i < squares.length; i++) {
+            squares[i].style.background = colors[i];
+            squares[i].style.display = 'inline-block';
+    };
 });
 
 function startGame() {
@@ -27,7 +46,6 @@ function startGame() {
         squares[i].addEventListener('click', function () {
             // Grab color of clicked square
             let clickedColor = this.style.backgroundColor;
-            console.log(clickedColor, pickedColor);
             // Compare color to pickedColor
             if (clickedColor === pickedColor) {
                 message.textContent = 'You win!';
@@ -82,7 +100,7 @@ function randomColor() {
 
 newColors.addEventListener('click', function () {
     // Generate new colors
-    colors = generateColors(6);
+    colors = generateColors(numberSquares);
     // Pick a new random color from array
     pickedColor = pickColor();
     // Change rgbValue to match picked color
