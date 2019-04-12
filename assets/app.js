@@ -1,7 +1,6 @@
 let numberSquares = 6;
 let colors = generateColors(numberSquares);
 let pickedColor = pickColor();
-
 const rgbValue = document.getElementById('rgbValue');
 const squares = document.querySelectorAll('.square');
 const message = document.querySelector('#message');
@@ -11,6 +10,7 @@ const easyButton = document.querySelector('#easyButton');
 const hardButton = document.querySelector('#hardButton');
 
 easyButton.addEventListener('click', function() {
+    jumbotron.style.backgroundColor = "";
     message.textContent = '';
     message.classList.remove('alert-success');
     message.classList.remove('alert-danger');
@@ -29,6 +29,7 @@ easyButton.addEventListener('click', function() {
     }
 });
 hardButton.addEventListener('click', function() {
+    jumbotron.style.backgroundColor = "";
     message.textContent = '';
     message.classList.remove('alert-success');
     message.classList.remove('alert-danger');
@@ -126,4 +127,5 @@ newColors.addEventListener('click', function () {
     message.textContent = "";
 });
 
+// Initiate game
 startGame();
