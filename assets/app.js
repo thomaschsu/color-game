@@ -2,6 +2,7 @@ let numberSquares = 6;
 let colors = generateColors(numberSquares);
 let pickedColor = pickColor();
 
+const rgbValue = document.getElementById('rgbValue');
 const squares = document.querySelectorAll('.square');
 const message = document.querySelector('#message');
 const newColors = document.querySelector('#newColors');
@@ -10,6 +11,9 @@ const easyButton = document.querySelector('#easyButton');
 const hardButton = document.querySelector('#hardButton');
 
 easyButton.addEventListener('click', function() {
+    message.textContent = '';
+    message.classList.remove('alert-success');
+    message.classList.remove('alert-danger');
     this.classList.add('btn', 'btn-dark');
     hardButton.classList.remove('btn-dark');
     numberSquares = 3
@@ -25,6 +29,9 @@ easyButton.addEventListener('click', function() {
     }
 });
 hardButton.addEventListener('click', function() {
+    message.textContent = '';
+    message.classList.remove('alert-success');
+    message.classList.remove('alert-danger');
     this.classList.add('btn', 'btn-dark');
     easyButton.classList.remove('btn-dark');
     numberSquares = 6;
@@ -32,12 +39,13 @@ hardButton.addEventListener('click', function() {
     pickedColor = pickColor();
     rgbValue.textContent = pickedColor;
     for (let i = 0; i < squares.length; i++) {
-            squares[i].style.background = colors[i];
-            squares[i].style.display = 'inline-block';
+        squares[i].style.background = colors[i];
+        squares[i].style.display = 'inline-block';
     };
 });
 
 function startGame() {
+    rgbValue.textContent = pickedColor;
     // Remove classes for alert
     message.classList.remove('alert-success');
     message.classList.remove('alert-danger');
@@ -65,8 +73,6 @@ function startGame() {
     }
 }
 
-const rgbValue = document.getElementById('rgbValue');
-rgbValue.textContent = pickedColor;
 
 function changeColors(color) {
     // Loop through all squares
