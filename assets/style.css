@@ -8,6 +8,9 @@ body {
     padding-bottom: 30%;
     background-color: red;
     display: inline-block;
+    transition: background 0.5s;
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
 }
 
 .jumbotron {
@@ -18,4 +21,13 @@ body {
     display: block;
     font-weight: 700;
     font-size: 110%;
+}
+
+button {
+    text-transform: lowercase;
+}
+
+#message {
+    display: inline-block;
+    width: 30%;
 }
